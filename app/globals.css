@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --bg: oklch(0.985 0.01 95);
+  --bg: oklch(0.982 0.012 92);
   --surface: oklch(1 0 0);
-  --tint: oklch(0.96 0.022 140);
-  --ink: oklch(0.22 0.025 155);
-  --muted: oklch(0.45 0.02 155);
-  --line: oklch(0.9 0.02 140);
-  --brand: oklch(0.4 0.085 152);
-  --brand-deep: oklch(0.3 0.065 155);
-  --brand-soft: oklch(0.93 0.04 145);
-  --cta: oklch(0.82 0.15 85);
-  --cta-hover: oklch(0.77 0.15 80);
+  --tint: oklch(0.955 0.02 120);
+  --ink: oklch(0.23 0.03 155);
+  --muted: oklch(0.44 0.025 155);
+  --line: oklch(0.89 0.02 120);
+  --brand: oklch(0.38 0.08 155);
+  --brand-deep: oklch(0.29 0.06 158);
+  --brand-soft: oklch(0.93 0.035 145);
+  --cta: oklch(0.81 0.14 83);
+  --cta-hover: oklch(0.76 0.145 78);
   --cta-ink: oklch(0.22 0.04 70);
-  --star: oklch(0.78 0.16 75);
+  --star: oklch(0.77 0.16 75);
 }
 
 @theme inline {
@@ -30,69 +30,50 @@
   --color-cta-hover: var(--cta-hover);
   --color-cta-ink: var(--cta-ink);
   --color-star: var(--star);
-  --font-heading: var(--font-work-sans);
-  --font-sans: var(--font-source-sans);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
 }
 
 html {
   background: var(--bg) !important;
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 88px;
 }
 
 body {
   background: var(--bg) !important;
   color: var(--ink);
-  font-family: var(--font-source-sans), system-ui, sans-serif;
-  font-size: 1.125rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.0625rem;
   line-height: 1.6;
 }
 
 h1, h2, h3 {
-  font-family: var(--font-work-sans), system-ui, sans-serif;
+  font-family: var(--font-heading), Georgia, serif;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
-details summary::-webkit-details-marker {
-  display: none;
+p { text-wrap: pretty; }
+
+.fade-up {
+  animation: fadeUp 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.fade-up-2 { animation-delay: 90ms; }
+.fade-up-3 { animation-delay: 180ms; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-details[open] .faq-chevron {
-  transform: rotate(180deg);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .hero-in {
-    animation: fade-up 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-  .hero-in-2 {
-    animation: fade-up 520ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
-  }
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: fade-up linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 40%;
-    }
-  }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
+details summary::-webkit-details-marker { display: none; }
+details[open] .faq-icon { transform: rotate(45deg); }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
   *, *::before, *::after {
+    animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
 }
